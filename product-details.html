@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | ISPHILO FRAGANCE</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .product-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 60px;
+        }
+        .product-main-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            background: var(--pure-white);
+            border: 1px solid var(--gray-light);
+        }
+        .product-main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .note-item {
+            text-align: center;
+            padding: 20px;
+            background: var(--pure-white);
+            border: 1px solid var(--gray-light);
+        }
+        .note-icon {
+            font-size: 24px;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+        @media (max-width: 992px) {
+            .product-details-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body onload="runSecurityScan(); renderProductDetails()">
+
+    <!-- TOP NOTIFICATION BAR -->
+    <div class="top-bar">
+        <i class="fas fa-shield-alt" style="margin-right: 10px;"></i> Secure Shopping • Fast Delivery Across KZN • Worldwide Shipping
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-close" id="closeSearch"><i class="fas fa-times"></i></div>
+        <div class="search-input-container">
+            <input type="text" id="searchInput" placeholder="Search for your signature scent...">
+            <div class="search-results" id="searchResults">
+                <!-- Results will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/27766834283" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SMART CAPSULE HEADER -->
+    <header id="header">
+        <div class="nav-container">
+            <div style="display: flex; align-items: center;">
+                <a href="index.html" class="logo-container">
+                    <img src="Images/LOGO.jpg" alt="ISPHILO Logo" class="logo-img">
+                    <div class="logo-text">Isphilo <span>Fragrance</span></div>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html" class="active">Shop</a></li>
+                <li><a href="specials.html">Specials</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <a href="cart.html" class="cart-pill">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="d-none d-md-inline">Cart</span>
+                    <div class="cart-count-badge cart-count">0</div>
+                </a>
+                
+                <div class="header-action-box d-none d-md-flex" id="openSearch">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <a href="login.html" class="header-action-box" style="background: var(--primary-red); color: white;">
+                    <i class="fas fa-user"></i>
+                </a>
+
+                <div class="header-action-box mobile-menu-toggle d-lg-none">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- PRODUCT DETAILS SECTION -->
+    <section class="section" style="padding-top: 150px;">
+        <div class="container">
+            <nav style="margin-bottom: 40px;">
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;">
+                    <a href="index.html" style="text-decoration: none; color: var(--pure-black); opacity: 0.5;">Home</a> / 
+                    <a href="shop.html" style="text-decoration: none; color: var(--pure-black); opacity: 0.5;">Shop</a> / 
+                    <span style="color: var(--primary-red);" id="breadcrumb-name">Product Name</span>
+                </p>
+            </nav>
+
+            <div class="product-details-grid" id="product-content">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </section>
+
+    <!-- RELATED PRODUCTS -->
+    <section class="section" style="background: var(--off-white);">
+        <div class="container">
+            <div class="section-header text-center">
+                <p class="section-subtitle">You May Also Like</p>
+                <h2 class="section-title">Related Fragrances</h2>
+                <div class="section-divider"></div>
+            </div>
+            
+            <div class="product-grid featured" style="grid-template-columns: repeat(4, 1fr);">
+                <!-- Dynamic Related Products -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about reveal">
+                    <a href="index.html" class="logo-container" style="color: white; margin-bottom: 20px; display: flex; text-decoration: none;">
+                        <img src="Images/LOGO.jpg" alt="ISPHILO Logo" style="height: 40px; margin-right: 15px; border: 1px solid white;">
+                        <div class="logo-text" style="color: white;">ISPHILO <span style="color: var(--primary-red);">FRAGANCE</span></div>
+                    </a>
+                    <p>Premium fragrance brand established in 2018, providing luxury scents worldwide from Berea, Durban.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="shop.html">Collection</a></li>
+                        <li><a href="specials.html">Specials</a></li>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Get in Touch</h4>
+                    <p><i class="fab fa-whatsapp"></i> +27 76 683 4283</p>
+                    <p><i class="fas fa-envelope"></i> info@isphilo.co.za</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ISPHILO FRAGANCE. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        function renderProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = parseInt(urlParams.get('id')) || 1;
+            const product = ISPHILO_DB.getProducts().find(p => p.id === id);
+            
+            if (!product) {
+                window.location.href = 'shop.html';
+                return;
+            }
+
+            document.title = `${product.name} | ISPHILO FRAGANCE`;
+            document.getElementById('breadcrumb-name').textContent = product.name;
+
+            const content = document.getElementById('product-content');
+            content.innerHTML = `
+                <div class="product-main-image">
+                    <img src="${product.image}" alt="${product.name}">
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                    ${product.is_sold_out ? `<div class="product-badge sold-out-badge">Sold Out</div>` : ''}
+                </div>
+
+                <div class="product-info-section">
+                    <p class="section-subtitle">${product.category}</p>
+                    <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 48px; margin-bottom: 20px; text-transform: uppercase;">${product.name}</h1>
+                    
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 30px;">
+                        <div style="color: var(--primary-red); font-size: 14px; letter-spacing: 3px;">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 11px; opacity: 0.6; font-weight: 700;">(Verified Luxury Authentic)</span>
+                    </div>
+
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-family: 'Montserrat', sans-serif; font-size: 32px; font-weight: 700; color: var(--primary-red);">R ${product.sale_price ? product.sale_price.toFixed(2) : product.price.toFixed(2)}</span>
+                        ${product.sale_price ? `<span style="font-family: 'Montserrat', sans-serif; font-size: 24px; text-decoration: line-through; opacity: 0.3; margin-left: 15px;">R ${product.price.toFixed(2)}</span>` : ''}
+                    </div>
+
+                    <p style="font-size: 16px; line-height: 1.8; margin-bottom: 40px; opacity: 0.8;">
+                        ${product.description || 'Experience the luxury of Isphilo Fragance, crafted with passion and delivered to your doorstep. A signature scent that defines your presence.'}
+                    </p>
+
+                    <div style="display: flex; gap: 20px; align-items: center;">
+                        <div style="display: flex; align-items: center; border: 2px solid var(--pure-black); padding: 5px;">
+                            <button onclick="decrementQty()" style="background: none; border: none; padding: 10px 15px; cursor: pointer; font-weight: 700;"><i class="fas fa-minus"></i></button>
+                            <input type="number" id="qty" value="1" min="1" style="width: 50px; text-align: center; border: none; font-family: 'Montserrat', sans-serif; font-weight: 700;">
+                            <button onclick="incrementQty()" style="background: none; border: none; padding: 10px 15px; cursor: pointer; font-weight: 700;"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <button onclick="addToCart(${product.id}, document.getElementById('qty').value)" class="btn" style="flex: 1; padding: 20px;" ${product.is_sold_out ? 'disabled' : ''}>
+                            ${product.is_sold_out ? 'SOLD OUT' : 'ADD TO BAG'}
+                        </button>
+                    </div>
+
+                    <div style="margin-top: 40px; padding-top: 30px; border-top: 2px solid var(--pure-black); display: flex; flex-wrap: wrap; gap: 30px;">
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase;"><i class="fas fa-truck" style="color: var(--primary-red); margin-right: 10px;"></i> Fast KZN Delivery</p>
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase;"><i class="fas fa-shield-alt" style="color: var(--primary-red); margin-right: 10px;"></i> 100% Secure Auth</p>
+                        <p style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; text-transform: uppercase;"><i class="fas fa-check-circle" style="color: var(--primary-red); margin-right: 10px;"></i> Verified Real Scents</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function incrementQty() {
+            const input = document.getElementById('qty');
+            input.value = parseInt(input.value) + 1;
+        }
+
+        function decrementQty() {
+            const input = document.getElementById('qty');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success | ISPHILO FRAGANCE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .success-wrapper { min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 100px 20px; }
+        .success-card { background: var(--pure-white); padding: 60px; border: 1px solid var(--gray-light); max-width: 600px; width: 100%; }
+        .success-icon { width: 80px; height: 80px; background: #e8f5e9; color: #2e7d32; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 30px; font-size: 40px; }
+    </style>
+</head>
+<body onload="runSecurityScan(); renderSuccess()">
+
+    <header id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo-container">
+                <img src="Images/LOGO.jpg" alt="ISPHILO Logo" class="logo-img">
+                <div class="logo-text">ISPHILO <span>FRAGANCE</span></div>
+            </a>
+        </div>
+    </header>
+
+    <div class="success-wrapper">
+        <div class="success-card">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <h1 style="font-family: 'Montserrat', sans-serif; font-weight: 700; margin-bottom: 20px; text-transform: uppercase;">Order Confirmed!</h1>
+            <p style="font-size: 18px; margin-bottom: 10px;">Thank you for your purchase.</p>
+            <p style="opacity: 0.6; margin-bottom: 40px;">Your order <strong id="order-id">#ORD-XXXXXX</strong> has been placed and is being processed. An email confirmation has been sent to your inbox.</p>
+            
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <a href="customer-dashboard.html" class="btn">View My Orders</a>
+                <a href="index.html" class="btn btn-outline">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        function renderSuccess() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id') || 'UNKNOWN';
+            document.getElementById('order-id').textContent = '#' + id;
+        }
+    </script>
+</body>
+</html>

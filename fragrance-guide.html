@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Essence Guide | ISPHILO FRAGANCE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .guide-container { max-width: 1200px; margin: 150px auto 100px; padding: 0 20px; }
+        .guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; }
+        .guide-card { background: var(--pure-white); border: 1px solid var(--gray-light); padding: 40px; }
+        .guide-card h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 20px; color: var(--primary-red); text-transform: uppercase; }
+        .note-list { list-style: none; padding: 0; }
+        .note-list li { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 15px; }
+        .note-list i { color: var(--primary-red); margin-top: 5px; }
+    </style>
+</head>
+<body onload="runSecurityScan()">
+
+    <!-- SMART CAPSULE HEADER -->
+    <header id="header">
+        <div class="nav-container">
+            <div style="display: flex; align-items: center;">
+                <a href="index.html" class="logo-container">
+                    <img src="Images/LOGO.jpg" alt="ISPHILO Logo" class="logo-img">
+                    <div class="logo-text">Isphilo <span>Fragrance</span></div>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="specials.html">Specials</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <a href="cart.html" class="cart-pill">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <div class="cart-count-badge cart-count">0</div>
+                </a>
+                
+                <div class="header-action-box" id="openSearch">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <a href="login.html" class="header-action-box" style="background: var(--primary-red); color: white;">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="guide-container">
+        <div class="section-header text-center">
+            <p class="section-subtitle">Discovery Center</p>
+            <h2 class="section-title">The Essence Guide</h2>
+            <div class="section-divider"></div>
+        </div>
+
+        <div class="guide-grid">
+            <div class="guide-card">
+                <h3>Understanding Fragrance Notes</h3>
+                <ul class="note-list">
+                    <li><i class="fas fa-wind"></i> <div><strong>Top Notes:</strong> The initial impression. Fresh and light, these scents evaporate within 15-30 minutes.</div></li>
+                    <li><i class="fas fa-spa"></i> <div><strong>Heart Notes:</strong> The core essence. These emerge as top notes fade, lasting for 2-4 hours.</div></li>
+                    <li><i class="fas fa-seedling"></i> <div><strong>Base Notes:</strong> The lasting signature. Deep and rich, these linger for 6-12+ hours.</div></li>
+                </ul>
+            </div>
+
+            <div class="guide-card">
+                <h3>Application Secrets</h3>
+                <ul class="note-list">
+                    <li><i class="fas fa-check-circle"></i> <div><strong>Pulse Points:</strong> Apply to wrists, neck, and behind ears where blood flow is strongest.</div></li>
+                    <li><i class="fas fa-times-circle"></i> <div><strong>Don't Rub:</strong> Rubbing your wrists together breaks down the fragrance molecules too fast.</div></li>
+                    <li><i class="fas fa-tint"></i> <div><strong>Hydrated Skin:</strong> Fragrances last significantly longer on well-moisturized skin.</div></li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px; background: var(--pure-black); padding: 60px; color: var(--pure-white); text-align: center; border: 2px solid var(--primary-red);">
+            <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 28px; margin-bottom: 20px; text-transform: uppercase;">Find Your Signature Scent</h3>
+            <p style="margin-bottom: 30px; opacity: 0.8; max-width: 800px; margin-left: auto; margin-right: auto;">Need personalized advice? Our fragrance experts in Durban are ready to help you choose the perfect essence for any occasion.</p>
+            <a href="contact.html" class="btn">Consult an Expert</a>
+        </div>
+    </div>
+
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

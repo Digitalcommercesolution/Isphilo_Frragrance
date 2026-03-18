@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order | ISPHILO FRAGANCE</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .tracking-hero {
+            height: 40vh;
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.6) 0%, rgba(196, 169, 98, 0.4) 100%),
+                        url('Images/IMG-20260316-WA0025.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+        .tracking-card {
+            background: var(--white);
+            max-width: 800px;
+            margin: -100px auto 100px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--gray);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            background: transparent;
+        }
+    </style>
+</head>    <style>
+        .tracking-hero {
+            height: 40vh;
+            background: linear-gradient(135deg, rgba(44, 44, 44, 0.6) 0%, rgba(196, 169, 98, 0.4) 100%),
+                        url('Images/IMG-20260316-WA0025.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+        .tracking-card {
+            background: var(--white);
+            max-width: 800px;
+            margin: -100px auto 100px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 10;
+        }
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--gray);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body onload="runSecurityScan()">
+
+    <!-- TOP PROMO BAR -->
+    <div class="top-bar" style="background: var(--pure-black); color: white; text-align: center; padding: 8px 0; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; position: fixed; top: 0; width: 100%; z-index: 1001;">
+        <i class="fas fa-star" style="color: var(--primary-red); margin-right: 5px;"></i> CRAVING LUXURY? FIND OUR EXCLUSIVE COLLECTIONS IN BEREA & ONLINE!
+    </div>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-close" id="closeSearch"><i class="fas fa-times"></i></div>
+        <div class="search-input-container">
+            <input type="text" id="searchInput" placeholder="Search for your signature scent...">
+            <div class="search-results" id="searchResults">
+                <!-- Results will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/27766834283" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SMART CAPSULE HEADER -->
+    <header id="header">
+        <div class="nav-container">
+            <div style="display: flex; align-items: center;">
+                <a href="index.html" class="logo-container">
+                    <img src="Images/LOGO.jpg" alt="ISPHILO Logo" class="logo-img">
+                    <div class="logo-text">Isphilo <span>Fragrance</span></div>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="specials.html">Specials</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <a href="cart.html" class="cart-pill">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="d-none d-md-inline">Cart</span>
+                    <div class="cart-count-badge cart-count">0</div>
+                </a>
+                
+                <div class="header-action-box d-none d-md-flex" id="openSearch">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <a href="login.html" class="header-action-box" style="background: var(--primary-red); color: white;">
+                    <i class="fas fa-user"></i>
+                </a>
+
+                <div class="header-action-box mobile-menu-toggle d-lg-none">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRACKING HERO -->
+    <section class="tracking-hero" style="background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(212, 46, 46, 0.4) 100%), url('Images/IMG-20260316-WA0025.jpg') center/cover;">
+        <div class="container">
+            <p class="hero-subtitle" style="color: var(--primary-red);">Order Status</p>
+            <h1 class="hero-title" style="font-size: 60px;">Track Your <span>Essence</span></h1>
+        </div>
+    </section>
+
+    <!-- TRACKING CONTENT -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="tracking-card" style="background: var(--pure-white); border: 2px solid var(--pure-black); padding: 60px;">
+                <div class="section-header text-center" style="margin-bottom: 40px;">
+                    <p class="section-subtitle">Real-time Tracking</p>
+                    <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase;">Where is your package?</h3>
+                </div>
+                
+                <form id="trackingForm">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label style="color: var(--primary-red); font-weight: 700;">Order Number</label>
+                            <input type="text" placeholder="e.g. ORD-XXXXXXXX" style="border-color: var(--gray-light); font-family: 'Montserrat', sans-serif;" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="color: var(--primary-red); font-weight: 700;">Email Address</label>
+                            <input type="email" placeholder="Your registered email" style="border-color: var(--gray-light); font-family: 'Montserrat', sans-serif;" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 20px; padding: 18px;">Track My Fragrance</button>
+                </form>
+
+                <div id="trackingResult" style="display: none; margin-top: 60px; padding-top: 40px; border-top: 2px solid var(--pure-black);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+                        <div>
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 10px; opacity: 0.5; letter-spacing: 1px; text-transform: uppercase;">Current Status</p>
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 24px; color: var(--primary-red); font-weight: 700; text-transform: uppercase;">In Transit</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 10px; opacity: 0.5; letter-spacing: 1px; text-transform: uppercase;">Estimated Arrival</p>
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 24px; color: var(--pure-black); font-weight: 700;">18 March 2026</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tracking Timeline -->
+                    <div style="position: relative; padding-left: 30px;">
+                        <div style="position: absolute; left: 4px; top: 0; bottom: 0; width: 2px; background: var(--gray-light);"></div>
+                        
+                        <div style="position: relative; margin-bottom: 30px;">
+                            <div style="position: absolute; left: -30px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--primary-red);"></div>
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase;">Out for Delivery</p>
+                            <p style="font-size: 14px; opacity: 0.6;">Scent City Hub • 08:30 AM</p>
+                        </div>
+                        
+                        <div style="position: relative; margin-bottom: 30px;">
+                            <div style="position: absolute; left: -30px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--pure-black);"></div>
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; text-transform: uppercase;">Arrived at Local Facility</p>
+                            <p style="font-size: 14px; opacity: 0.6;">Durban Logistics • 05:45 AM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER ... -->
+
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        document.getElementById('trackingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('trackingResult').style.display = 'block';
+            showNotification('Tracking information retrieved successfully.', 'success');
+        });
+    </script>
+                            <p style="font-size: 14px; opacity: 0.6;">Scent City Hub • 05:45 AM</p>
+                        </div>
+                        
+                        <div style="position: relative;">
+                            <div style="position: absolute; left: -30px; top: 5px; width: 10px; height: 10px; border-radius: 50%; background: var(--gray);"></div>
+                            <p style="font-family: 'Montserrat', sans-serif; font-size: 12px; opacity: 0.5;">Order Processed</p>
+                            <p style="font-size: 14px; opacity: 0.4;">Warehouse • 16 March 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about reveal">
+                    <a href="index.html" class="logo-container" style="color: white; margin-bottom: 20px; display: flex;">
+                        <img src="Images/LOGO.jpg" alt="ISPHILO Logo" style="height: 40px; margin-right: 15px;">
+                        <div class="logo-text" style="color: white;">ISPHILO <span style="color: var(--gold);">FRAGANCE</span></div>
+                    </a>
+                    <p>
+                        Premium fragrance brand established in 2018, dedicated to providing 
+                        high-quality, long-lasting fragrances for the modern individual.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/isphilo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/iqabunga_isphilo/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@iphilo_fragrance" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/27766834283" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links reveal">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop All</a></li>
+                        <li><a href="specials.html">Specials</a></li>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="fragrance-guide.html">Fragrance Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links reveal">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="order-tracking.html">Track Order</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact reveal">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Fragrance Lane, Scent City</p>
+                    <p><i class="fas fa-phone"></i> +27 76 683 4283</p>
+                    <p><i class="fas fa-envelope"></i> info@isphilo.co.za</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 <span>ISPHILO FRAGANCE</span>. All rights reserved. Est. 2018</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > 50) {
+                $('#header').addClass('scrolled');
+            } else {
+                $('#header').removeClass('scrolled');
+            }
+        });
+
+        $('.mobile-menu-toggle').click(function() {
+            $('.nav-menu').toggleClass('active');
+            $(this).find('i').toggleClass('fa-bars fa-times');
+        });
+
+        $('#trackingForm').submit(function(e) {
+            e.preventDefault();
+            $('#trackingResult').fadeIn();
+        });
+
+        // Search Functionality
+        const products = [
+            { name: 'Midnight Rose', price: 495, category: 'Ladies Fragrances', image: 'Images/IMG-20260316-WA0035.jpg' },
+            { name: 'Oceanic Blue', price: 600, category: "Men's Colognes", image: 'Images/IMG-20260316-WA0036.jpg' },
+            { name: 'Summer Breeze', price: 450, category: 'Ladies Fragrances', image: 'Images/IMG-20260316-WA0037.jpg' },
+            { name: 'Midnight Leather', price: 650, category: "Men's Colognes", image: 'Images/IMG-20260316-WA0038.jpg' }
+        ];
+
+        $('#openSearch').click(function() {
+            $('#searchOverlay').fadeIn();
+            $('#searchInput').focus();
+            $('body').css('overflow', 'hidden');
+        });
+
+        $('#closeSearch').click(function() {
+            $('#searchOverlay').fadeOut();
+            $('body').css('overflow', 'auto');
+        });
+
+        $('#searchInput').on('input', function() {
+            const query = $(this).val().toLowerCase();
+            const results = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+            
+            let html = '';
+            results.forEach(p => {
+                html += `
+                    <div class="product-card" onclick="window.location.href='product-details.html'">
+                        <div class="product-image" style="height: 200px;">
+                            <img src="${p.image}" alt="${p.name}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">${p.category}</p>
+                            <h5 class="product-name">${p.name}</h5>
+                            <p class="product-price">R ${p.price}.00</p>
+                        </div>
+                    </div>
+                `;
+            });
+            $('#searchResults').html(html);
+        });
+    </script>
+</body>
+</html>

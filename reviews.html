@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Stories | ISPHILO FRAGANCE</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body onload="runSecurityScan()">
+
+    <!-- TOP PROMO BAR -->
+    <div class="top-bar" style="background: var(--pure-black); color: white; text-align: center; padding: 8px 0; font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; position: fixed; top: 0; width: 100%; z-index: 1001;">
+        <i class="fas fa-star" style="color: var(--primary-red); margin-right: 5px;"></i> CRAVING LUXURY? FIND OUR EXCLUSIVE COLLECTIONS IN BEREA & ONLINE!
+    </div>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/27766834283" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- SMART CAPSULE HEADER -->
+    <header id="header">
+        <div class="nav-container">
+            <div style="display: flex; align-items: center;">
+                <a href="index.html" class="logo-container">
+                    <img src="Images/LOGO.jpg" alt="ISPHILO Logo" class="logo-img">
+                    <div class="logo-text">Isphilo <span>Fragrance</span></div>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="specials.html">Specials</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="reviews.html" class="active">Reviews</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            
+            <div class="header-actions">
+                <a href="cart.html" class="cart-pill">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <div class="cart-count-badge cart-count">0</div>
+                </a>
+                
+                <div class="header-action-box" id="openSearch">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <a href="login.html" class="header-action-box" style="background: var(--primary-red); color: white;">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEARCH OVERLAY -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-close" id="closeSearch"><i class="fas fa-times"></i></div>
+        <div class="search-input-container">
+            <input type="text" id="searchInput" placeholder="Search for your signature scent...">
+            <div class="search-results" id="searchResults">
+                <!-- Results will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- REVIEWS HEADER -->
+    <section class="section" style="padding-top: 150px; padding-bottom: 40px; background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Testimonials</p>
+                <h2 class="section-title">Customer Stories</h2>
+                <div class="section-divider" style="margin: 0;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS CONTENT -->
+    <section class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="testimonial-grid">
+                <!-- Review 1 -->
+                <div class="testimonial-card" style="border: 1px solid var(--gray-light);">
+                    <div class="testimonial-rating" style="color: var(--primary-red);">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Absolutely stunning fragrances. Midnight Rose is my new signature scent. The quality is exceptional and the scent lingers all day long!"
+                    </p>
+                    <p class="testimonial-author" style="font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 11px;">Sarah M. <span style="color: var(--primary-red);">Verified Purchase</span></p>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="testimonial-card" style="border: 1px solid var(--gray-light);">
+                    <div class="testimonial-rating" style="color: var(--primary-red);">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "I've tried many luxury brands, but ISIPHILO stands out for its longevity and unique scent profiles. Oceanic Blue is a masterpiece."
+                    </p>
+                    <p class="testimonial-author" style="font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 11px;">James L. <span style="color: var(--primary-red);">Verified Purchase</span></p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="testimonial-card" style="border: 1px solid var(--gray-light);">
+                    <div class="testimonial-rating" style="color: var(--primary-red);">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The presentation and customer service are as premium as the scents themselves. A truly luxury experience from start to finish."
+                    </p>
+                    <p class="testimonial-author" style="font-family: 'Montserrat', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 11px;">Emily R. <span style="color: var(--primary-red);">Verified Purchase</span></p>
+                </div>
+            </div>
+
+            <!-- REVIEW FORM -->
+            <div style="margin-top: 100px; max-width: 800px; margin-left: auto; margin-right: auto; background: var(--pure-white); padding: 60px; border: 2px solid var(--pure-black);">
+                <div class="section-header text-center" style="margin-bottom: 40px;">
+                    <p class="section-subtitle">Your Experience</p>
+                    <h3 style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 24px; text-transform: uppercase;">Share Your Story</h3>
+                </div>
+                <form id="reviewForm">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+                        <div class="form-group">
+                            <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; color: var(--primary-red); font-weight: 700;">Your Name</label>
+                            <input type="text" placeholder="Enter your name" style="width: 100%; padding: 15px; border: 1px solid var(--gray-light); font-family: 'Montserrat', sans-serif; font-size: 14px;" required>
+                        </div>
+                        <div class="form-group">
+                            <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; color: var(--primary-red); font-weight: 700;">Rating</label>
+                            <select style="width: 100%; padding: 15px; border: 1px solid var(--gray-light); font-family: 'Montserrat', sans-serif; font-size: 14px;">
+                                <option>5 Stars - Excellent</option>
+                                <option>4 Stars - Very Good</option>
+                                <option>3 Stars - Good</option>
+                                <option>2 Stars - Fair</option>
+                                <option>1 Star - Poor</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; color: var(--primary-red); font-weight: 700;">Your Review</label>
+                        <textarea rows="5" placeholder="Tell us about your experience with our fragrances" style="width: 100%; padding: 15px; border: 1px solid var(--gray-light); font-family: 'Montserrat', sans-serif; font-size: 14px;" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Submit Story</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about reveal">
+                    <a href="index.html" class="logo-container" style="color: white; margin-bottom: 20px; display: flex;">
+                        <img src="Images/LOGO.jpg" alt="ISPHILO Logo" style="height: 40px; margin-right: 15px;">
+                        <div class="logo-text" style="color: white;">ISPHILO <span style="color: var(--gold);">FRAGANCE</span></div>
+                    </a>
+                    <p>
+                        Premium fragrance brand established in 2018, dedicated to providing 
+                        high-quality, long-lasting fragrances for the modern individual.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/isphilo/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/iqabunga_isphilo/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@iphilo_fragrance" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://wa.me/27766834283" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links reveal">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop All</a></li>
+                        <li><a href="specials.html">Specials</a></li>
+                        <li><a href="about.html">Our Story</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="fragrance-guide.html">Fragrance Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links reveal">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="order-tracking.html">Track Order</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact reveal">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Fragrance Lane, Scent City</p>
+                    <p><i class="fas fa-phone"></i> +27 76 683 4283</p>
+                    <p><i class="fas fa-envelope"></i> info@isphilo.co.za</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 <span>ISPHILO FRAGANCE</span>. All rights reserved. Est. 2018</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="assets/js/db.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > 50) {
+                $('#header').addClass('scrolled');
+            } else {
+                $('#header').removeClass('scrolled');
+            }
+        });
+
+        $('.mobile-menu-toggle').click(function() {
+            $('.nav-menu').toggleClass('active');
+            $(this).find('i').toggleClass('fa-bars fa-times');
+        });
+
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showNotification('Thank you! Your story has been submitted for verification.', 'success');
+            this.reset();
+        });
+
+        // Search Functionality
+        const products = [
+            { name: 'Midnight Rose', price: 495, category: 'Ladies Fragrances', image: 'Images/IMG-20260316-WA0035.jpg' },
+            { name: 'Oceanic Blue', price: 600, category: "Men's Colognes", image: 'Images/IMG-20260316-WA0036.jpg' },
+            { name: 'Summer Breeze', price: 450, category: 'Ladies Fragrances', image: 'Images/IMG-20260316-WA0037.jpg' },
+            { name: 'Midnight Leather', price: 650, category: "Men's Colognes", image: 'Images/IMG-20260316-WA0038.jpg' }
+        ];
+
+        $('#openSearch').click(function() {
+            $('#searchOverlay').fadeIn();
+            $('#searchInput').focus();
+            $('body').css('overflow', 'hidden');
+        });
+
+        $('#closeSearch').click(function() {
+            $('#searchOverlay').fadeOut();
+            $('body').css('overflow', 'auto');
+        });
+
+        $('#searchInput').on('input', function() {
+            const query = $(this).val().toLowerCase();
+            const results = products.filter(p => p.name.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+            
+            let html = '';
+            results.forEach(p => {
+                html += `
+                    <div class="product-card" onclick="window.location.href='product-details.html'">
+                        <div class="product-image" style="height: 200px;">
+                            <img src="${p.image}" alt="${p.name}">
+                        </div>
+                        <div class="product-info">
+                            <p class="product-category">${p.category}</p>
+                            <h5 class="product-name">${p.name}</h5>
+                            <p class="product-price">R ${p.price}.00</p>
+                        </div>
+                    </div>
+                `;
+            });
+            $('#searchResults').html(html);
+        });
+    </script>
+</body>
+</html>

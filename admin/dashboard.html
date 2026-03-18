@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ISPHILO FRAGANCE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .admin-container { padding: 120px 40px 60px; max-width: 1400px; margin: 0 auto; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; border-bottom: 2px solid var(--pure-black); padding-bottom: 20px; }
+        .admin-grid { display: grid; grid-template-columns: 250px 1fr; gap: 40px; }
+        .admin-sidebar { background: var(--off-white); padding: 20px; border: 1px solid var(--gray-light); height: fit-content; }
+        .admin-nav { list-style: none; }
+        .admin-nav li { margin-bottom: 10px; }
+        .admin-nav a { text-decoration: none; color: var(--pure-black); display: block; padding: 10px; transition: var(--transition); border-left: 3px solid transparent; }
+        .admin-nav a.active, .admin-nav a:hover { background: var(--pure-white); border-left-color: var(--primary-red); color: var(--primary-red); }
+        
+        .admin-card { background: var(--pure-white); border: 1px solid var(--gray-light); padding: 30px; margin-bottom: 30px; }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .admin-table th, .admin-table td { text-align: left; padding: 15px; border-bottom: 1px solid var(--gray-light); }
+        .admin-table th { background: var(--off-white); font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; }
+        
+        .status-badge { padding: 4px 10px; font-size: 10px; text-transform: uppercase; border-radius: 2px; font-weight: 700; }
+        .status-pending { background: #fff3cd; color: #856404; }
+        .status-completed { background: #d4edda; color: #155724; }
+        
+        .btn-sm { padding: 8px 15px; font-size: 11px; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { background: var(--pure-white); padding: 40px; max-width: 600px; width: 90%; position: relative; }
+        
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; border: 1px solid var(--gray-light); font-family: inherit; }
+    </style>
+</head>
+<body onload="checkAdmin()">
+
+    <header>
+        <div class="nav-container">
+            <a href="../index.html" class="logo-container">
+                <img src="../Images/LOGO.jpg" alt="ISPHILO Logo" class="logo-img">
+                <div class="logo-text">ISPHILO <span>ADMIN</span></div>
+            </a>
+            <div class="nav-icons">
+                <a href="#" onclick="ISPHILO_DB.logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h2>Management Console</h2>
+            <button class="btn" onclick="openProductModal()">Add New Product <i class="fas fa-plus"></i></button>
+        </div>
+
+        <div class="admin-grid">
+            <div class="admin-sidebar">
+                <ul class="admin-nav">
+                    <li><a href="#" class="active" onclick="showSection('overview')"><i class="fas fa-chart-line"></i> Overview</a></li>
+                    <li><a href="#" onclick="showSection('products')"><i class="fas fa-box"></i> Products</a></li>
+                    <li><a href="#" onclick="showSection('orders')"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                    <li><a href="#" onclick="showSection('newsletter')"><i class="fas fa-envelope"></i> Newsletter</a></li>
+                    <li><a href="#" onclick="showSection('users')"><i class="fas fa-users"></i> Customers</a></li>
+                </ul>
+            </div>
+
+            <div class="admin-main">
+                <!-- Overview Section -->
+                <div id="section-overview" class="admin-section">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px;">
+                        <div class="admin-card" style="margin-bottom: 0; text-align: center;">
+                            <p class="section-subtitle">Total Revenue</p>
+                            <h2 id="stat-revenue" style="color: var(--primary-red);">R 0.00</h2>
+                        </div>
+                        <div class="admin-card" style="margin-bottom: 0; text-align: center;">
+                            <p class="section-subtitle">Total Orders</p>
+                            <h2 id="stat-orders">0</h2>
+                        </div>
+                        <div class="admin-card" style="margin-bottom: 0; text-align: center;">
+                            <p class="section-subtitle">Active Customers</p>
+                            <h2 id="stat-customers">0</h2>
+                        </div>
+                        <div class="admin-card" style="margin-bottom: 0; text-align: center;">
+                            <p class="section-subtitle">Subscribers</p>
+                            <h2 id="stat-subs">0</h2>
+                        </div>
+                    </div>
+
+                    <div class="admin-card">
+                        <h3>Sales Performance</h3>
+                        <div style="height: 300px; display: flex; align-items: flex-end; gap: 10px; padding-top: 20px;" id="sales-chart">
+                            <!-- Simple CSS Bar Chart -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Section -->
+                <div id="section-products" class="admin-section" style="display:none;">
+                    <div class="admin-card">
+                        <h3>Inventory Management</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="product-list">
+                                <!-- Products injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Orders Section -->
+                <div id="section-orders" class="admin-section" style="display:none;">
+                    <div class="admin-card">
+                        <h3>Recent Orders</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Total</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="order-list">
+                                <!-- Orders injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Newsletter Section -->
+                <div id="section-newsletter" class="admin-section" style="display:none;">
+                    <div class="admin-card">
+                        <h3>Newsletter Subscribers</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Email Address</th>
+                                    <th>Subscription Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="newsletter-list">
+                                <!-- Subscribers injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <h3 id="modalTitle">Add New Fragrance</h3>
+            <form id="productForm">
+                <input type="hidden" id="prod-id">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="prod-name" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="prod-category">
+                        <option>Ladies Fragrances</option>
+                        <option>Men's Colognes</option>
+                        <option>Unisex</option>
+                        <option>Luxury Collection</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div class="form-group">
+                        <label>Price (R)</label>
+                        <input type="number" id="prod-price" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Sale Price (R)</label>
+                        <input type="number" id="prod-sale" step="0.01">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="prod-desc" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Sold Out</label>
+                    <input type="checkbox" id="prod-soldout" style="width: auto;">
+                </div>
+                <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                    <button type="button" class="btn btn-outline" onclick="closeProductModal()">Cancel</button>
+                    <button type="submit" class="btn">Save Fragrance</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/db.js"></script>
+    <script>
+        function checkAdmin() {
+            const user = ISPHILO_DB.getCurrentUser();
+            if (!user || user.role !== 'admin') {
+                window.location.href = '../login.html';
+                return;
+            }
+            renderStats();
+            renderProducts();
+            renderOrders();
+            renderNewsletter();
+        }
+
+        function renderStats() {
+            const orders = ISPHILO_DB.getOrders();
+            const users = ISPHILO_DB.getUsers().filter(u => u.role === 'customer');
+            const subs = ISPHILO_DB.getData('newsletter');
+            
+            const revenue = orders.reduce((sum, o) => sum + o.total, 0);
+            
+            document.getElementById('stat-revenue').textContent = `R ${revenue.toFixed(2)}`;
+            document.getElementById('stat-orders').textContent = orders.length;
+            document.getElementById('stat-customers').textContent = users.length;
+            document.getElementById('stat-subs').textContent = subs.length;
+
+            // Simple Chart
+            const chart = document.getElementById('sales-chart');
+            if (orders.length > 0) {
+                const maxTotal = Math.max(...orders.map(o => o.total));
+                chart.innerHTML = orders.slice(-10).map(o => `
+                    <div style="flex: 1; background: var(--primary-red); height: ${(o.total / maxTotal) * 100}%; position: relative;" title="Order #${o.id}: R ${o.total}">
+                        <span style="position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 9px; font-weight: 700;">${o.total.toFixed(0)}</span>
+                    </div>
+                `).join('');
+            } else {
+                chart.innerHTML = '<p style="width: 100%; text-align: center; opacity: 0.5;">Not enough data for chart</p>';
+            }
+        }
+
+        function showSection(section) {
+            document.querySelectorAll('.admin-section').forEach(s => s.style.display = 'none');
+            document.getElementById('section-' + section).style.display = 'block';
+            document.querySelectorAll('.admin-nav a').forEach(a => a.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+
+        function renderProducts() {
+            const products = ISPHILO_DB.getProducts();
+            const list = document.getElementById('product-list');
+            list.innerHTML = products.map(p => `
+                <tr>
+                    <td><img src="../${p.image}" style="width: 40px; height: 40px; object-fit: cover;"></td>
+                    <td>${p.name}</td>
+                    <td>${p.category}</td>
+                    <td>R ${p.price.toFixed(2)}</td>
+                    <td>
+                        <span class="status-badge ${p.is_sold_out ? 'status-pending' : 'status-completed'}">
+                            ${p.is_sold_out ? 'Sold Out' : 'Available'}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn-sm btn-outline" onclick="editProduct(${p.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn-sm btn-outline" onclick="deleteProduct(${p.id})" style="color: var(--primary-red);"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function renderOrders() {
+            const orders = ISPHILO_DB.getOrders();
+            const list = document.getElementById('order-list');
+            list.innerHTML = orders.length ? orders.map(o => `
+                <tr>
+                    <td>#${o.id}</td>
+                    <td>${o.customer.name}</td>
+                    <td>R ${o.total.toFixed(2)}</td>
+                    <td>${new Date(o.date).toLocaleDateString()}</td>
+                    <td>
+                        <select onchange="updateStatus('${o.id}', this.value)" class="status-badge ${o.status.toLowerCase() === 'pending' ? 'status-pending' : 'status-completed'}" style="border: none; cursor: pointer;">
+                            <option value="Pending" ${o.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="Filled" ${o.status === 'Filled' ? 'selected' : ''}>Filled</option>
+                            <option value="Shipped" ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                            <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+                        </select>
+                    </td>
+                    <td><button class="btn-sm btn-outline" onclick="viewOrderDetails('${o.id}')">Details</button></td>
+                </tr>
+            `).join('') : '<tr><td colspan="6" style="text-align:center">No orders found</td></tr>';
+        }
+
+        function updateStatus(id, status) {
+            if (ISPHILO_DB.updateOrder(id, status)) {
+                renderOrders();
+                alert(`Order ${id} status updated to ${status}`);
+            }
+        }
+
+        function viewOrderDetails(id) {
+            const o = ISPHILO_DB.getOrders().find(order => order.id === id);
+            alert(`Order Details:\n\nCustomer: ${o.customer.name}\nEmail: ${o.customer.email}\nAddress: ${o.customer.address}, ${o.customer.city}\nItems: ${o.items.length}\nPayment: ${o.payment}`);
+        }
+
+        function renderNewsletter() {
+            const subs = ISPHILO_DB.getData('newsletter');
+            const list = document.getElementById('newsletter-list');
+            list.innerHTML = subs.length ? subs.map(s => `
+                <tr>
+                    <td>${s.email}</td>
+                    <td>${new Date(s.date).toLocaleDateString()}</td>
+                    <td><span class="status-badge status-completed">Active</span></td>
+                </tr>
+            `).join('') : '<tr><td colspan="3" style="text-align:center">No subscribers yet</td></tr>';
+        }
+
+        function openProductModal(id = null) {
+            const modal = document.getElementById('productModal');
+            const form = document.getElementById('productForm');
+            const title = document.getElementById('modalTitle');
+            
+            if (id) {
+                const p = ISPHILO_DB.getProducts().find(prod => prod.id === id);
+                document.getElementById('prod-id').value = p.id;
+                document.getElementById('prod-name').value = p.name;
+                document.getElementById('prod-category').value = p.category;
+                document.getElementById('prod-price').value = p.price;
+                document.getElementById('prod-sale').value = p.sale_price || '';
+                document.getElementById('prod-desc').value = p.description || '';
+                document.getElementById('prod-soldout').checked = p.is_sold_out;
+                title.innerText = 'Edit Fragrance';
+            } else {
+                form.reset();
+                document.getElementById('prod-id').value = '';
+                title.innerText = 'Add New Fragrance';
+            }
+            
+            modal.style.display = 'flex';
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        document.getElementById('productForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('prod-id').value;
+            const product = {
+                id: id ? parseInt(id) : null,
+                name: document.getElementById('prod-name').value,
+                category: document.getElementById('prod-category').value,
+                price: parseFloat(document.getElementById('prod-price').value),
+                sale_price: parseFloat(document.getElementById('prod-sale').value) || null,
+                description: document.getElementById('prod-desc').value,
+                is_sold_out: document.getElementById('prod-soldout').checked,
+                image: id ? ISPHILO_DB.getProducts().find(p => p.id === parseInt(id)).image : "Images/LOGO.jpg",
+                badge: ""
+            };
+            
+            ISPHILO_DB.saveProduct(product);
+            closeProductModal();
+            renderProducts();
+        });
+
+        function editProduct(id) {
+            openProductModal(id);
+        }
+
+        function deleteProduct(id) {
+            if (confirm('Are you sure you want to remove this product?')) {
+                ISPHILO_DB.deleteProduct(id);
+                renderProducts();
+            }
+        }
+    </script>
+</body>
+</html>
